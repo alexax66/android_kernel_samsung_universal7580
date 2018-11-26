@@ -11,18 +11,18 @@
 
 /dts-v1/;
 #include "exynos7580-reserve-1500MB.dtsi"
-#include "exynos7580.dtsi"
+#include "exynos7580-q.dtsi"
 #include "modem-isla-pdata.dtsi"
-#include "exynos7580-a3xelte_battery.dtsi"
-#include "exynos7580-a3xelte_eur_open_gpio_00.dtsi"
+#include "exynos7580-a3xelte_battery_rev01.dtsi"
+#include "exynos7580-a3xelte_eur_open_gpio_01.dtsi"
 
 / {
-	model = "Samsung A3XE revision 00 board based on EXYNOS7580";
+	model = "Samsung A3XE revision 1 board based on EXYNOS7580";
 	model_info-chip = <7580>;
 	model_info-platform = "android";
 	model_info-subtype = "samsung";
-	model_info-hw_rev = <00>;
-	model_info-hw_rev_end = <00>;
+	model_info-hw_rev = <1>;
+	model_info-hw_rev_end = <1>;
 	compatible = "samsung,exynos7580-universal7580,r01", "samsung,exynos7580";
 
 	chosen {
@@ -269,13 +269,13 @@
 			samsung,pin-drv = <0>;
 		};
 		attn_input: attn-input {
-			samsung,pins = "gpa3-2";
+			samsung,pins = "gpa1-1";
 			samsung,pin-function = <0>;
 			samsung,pin-pud = <0>;
 			samsung,pin-drv = <0>;
 		};
 		attn_irq: attn-irq {
-			samsung,pins = "gpa3-2";
+			samsung,pins = "gpa1-1";
 			samsung,pin-function = <0xf>;
 			samsung,pin-pud = <0>;
 			samsung,pin-drv = <0>;
@@ -415,20 +415,18 @@
 		status = "okay";
 		#address-cells = <1>;
 		#size-cells = <0>;
-
-		mms_ts@48 {
-			compatible = "melfas,mms_ts";
-			reg = <0x48>;
+		touchscreen@50 {
+			compatible = "imagis,ist30xx-ts";
+			reg = <0x50>;
 			pinctrl-names = "on_state", "off_state";
 			pinctrl-0 = <&attn_irq>;
 			pinctrl-1 = <&attn_input>;
-			melfas,vdd_en = "tsp_avdd";
-			melfas,irq-gpio = <&gpa3 2 0>;
-			melfas,scl-gpio = <&gpc3 1 0>;
-			melfas,sda-gpio = <&gpc3 0 0>;
-			melfas,max_x = <1080>;
-			melfas,max_y = <1920>;
-			melfas,fw_name = "tsp_melfas/mms438_a3x.fw";
+			imagis,irq-gpio = <&gpa1 1 0>;
+			imagis,regulator_avdd = "tsp_avdd";
+			imagis,fw-bin = <1>;
+			imagis,octa-hw = <1>;
+			imagis,ic-version = "ist3032c";
+			imagis,project-name = "a3x";
 		};
 	};
 
@@ -656,11 +654,13 @@ i2c@33 {
 			io-channel-names = "adc-jack";
 			#io-channel-cells = <1>;
 			io-channel-ranges;
-			but-zones-list = <&but_zones 226 1 681>, /* send/end */
-					<&but_zones 582 682 754>, /* google */
-					<&but_zones 115 755 920>, /* vol up */
-					<&but_zones 114 1000 1700>; /* vol down */
-			btn-release-value = <1800>;
+			but-zones-list = <&but_zones 226 0 240>, /* send/end */
+					<&but_zones 582 241 315>, /* google */
+					<&but_zones 115 316 520>, /* vol up */
+					<&but_zones 114 521 900>; /* vol down */
+			mic-adc-range = <1380>;
+			btn-release-value = <1000>;
+			mic-det-delay = <50>;
 		};
 
 		s2mpu03_pmic@66 {
@@ -1242,6 +1242,7 @@ i2c@33 {
 		/* gpio_err = <&gpa3 7 0x2>; */
 		gpio_pcd = <&gpd2 4 0x1>;
 		/* gpio_det = <&gpa0 6 0x1>; */
+		/* gpio_id = <&gpa3 2 0>; */
 		status = "okay";
 	};
 

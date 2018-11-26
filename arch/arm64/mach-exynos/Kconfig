@@ -303,6 +303,68 @@ config MACH_UNIVERSAL7580
 	  Machine support for Samsung EXYNOS7580 machine with device tree enabled.
 	  Select this if a fdt blob is available for the EXYNOS7580 SoC based board.
 
+choice
+	prompt "Exynos7580 device target"
+	default MACH_EXYNOS7580_UNIVERSAL
+
+config MACH_EXYNOS7580_UNIVERSAL
+	bool "Universal (for test only)"
+	depends on MACH_UNIVERSAL7580
+
+config MACH_EXYNOS7578_A3XELTE
+	bool "SAMSUNG Galaxy A3 (SM-A310F) board using a specific device tree"
+	depends on MACH_UNIVERSAL7580
+	help
+	  Samsung Galaxy A3 2016 (SM-A310F) by default have only
+	  4 Cortex A53 cores (Blocled by Samsung).
+	  Select this for enable a specific fdt blob of SM-A310F board.
+
+config MACH_EXYNOS7580_A3XELTE
+	bool "SAMSUNG Galaxy A3 (SM-A310F) board using a custom device tree"
+	depends on MACH_UNIVERSAL7580
+	help
+	  Samsung Galaxy A3 2016 (SM-A310F) really have the same Exynos 7580
+	  SOC with activated 8 Cortex A53 cores as SM-A510F and etc.
+	  Select this for enable a custom fdt blob of SM-A310F board.
+
+config MACH_EXYNOS7580_A5XELTE
+	bool "SAMSUNG Galaxy A5 (SM-A510F) board using a specific device tree"
+	depends on MACH_UNIVERSAL7580
+	help
+	  Select this for enable a specific fdt blob of SM-A510F board.
+
+config MACH_EXYNOS7580_A7XELTE
+	bool "SAMSUNG Galaxy A7 (SM-A710F) board using a specific device tree"
+	depends on MACH_UNIVERSAL7580
+	help
+	  Select this for enable a specific fdt blob of SM-A710F board.
+
+config MACH_EXYNOS7580_S5NEOLTE
+	bool "SAMSUNG Galaxy J7 (SM-G903F) board using a specific device tree"
+	depends on MACH_UNIVERSAL7580
+	help
+	  Select this for enable a specific fdt blob of SM-G903F board.
+
+config MACH_EXYNOS7580_J7ELTE
+	bool "SAMSUNG Galaxy J7 (SM-J700F) board using a specific device tree"
+	depends on MACH_UNIVERSAL7580
+	help
+	  Select this for enable a specific fdt blob of SM-J700F board.
+
+config MACH_EXYNOS7580_GVWIFI
+	bool "SAMSUNG Galaxy View WIFI (SM-T670) board using a specific device tree"
+	depends on MACH_UNIVERSAL7580
+	help
+	  Select this for enable a specific fdt blob of SM-T670 board.
+
+config MACH_EXYNOS7580_GVLTE
+	bool "SAMSUNG Galaxy View LTE (SM-T677) board using a specific device tree"
+	depends on MACH_UNIVERSAL7580
+	help
+	  Select this for enable a specific fdt blob of SM-T677 board.
+
+endchoice
+
 config SEC_FACTORY
 	bool "SAMSUNG Factory build option"
 	default n
