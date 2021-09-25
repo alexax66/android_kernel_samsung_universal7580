@@ -31,6 +31,10 @@ crypto_hash-y += ahash.o
 crypto_hash-y += shash.o
 obj-$(CONFIG_CRYPTO_HASH2) += crypto_hash.o
 
+crypto_acompress-y := acompress.o
+crypto_acompress-y += scompress.o
+obj-$(CONFIG_CRYPTO_ACOMP2) += crypto_acompress.o
+
 obj-$(CONFIG_CRYPTO_PCOMP2) += pcompress.o
 
 cryptomgr-y := algboss.o testmgr.o
