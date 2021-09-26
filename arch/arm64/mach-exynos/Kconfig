@@ -351,6 +351,13 @@ config MACH_EXYNOS7580_J7ELTE
 	help
 	  Select this for enable a specific fdt blob of SM-J700F board.
 
+
+config MACH_EXYNOS7580_J7XLTE
+	bool "SAMSUNG Galaxy On8 (SM-J710FN/DF) board using a specific device tree"
+	depends on MACH_UNIVERSAL7580
+	help
+	  Select this for enable a specific fdt blob of SM-J710FN/DF board.
+
 config MACH_EXYNOS7580_GVWIFI
 	bool "SAMSUNG Galaxy View WIFI (SM-T670) board using a specific device tree"
 	depends on MACH_UNIVERSAL7580

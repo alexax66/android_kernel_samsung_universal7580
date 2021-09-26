@@ -45,6 +45,11 @@ dtb-$(CONFIG_MACH_EXYNOS7580_J7ELTE) += exynos7580-j7elte_rev00.dtb \
 				exynos7580-j7elte_rev04.dtb \
 				exynos7580-j7elte_rev06.dtb
 
+dtb-$(CONFIG_MACH_EXYNOS7580_J7XLTE) += exynos7580-j7xelte_swa_open_00.dts \
+				exynos7580-j7xelte_swa_open_01.dts \
+				exynos7580-j7xelte_swa_open_02.dts \
+				exynos7580-j7xelte_swa_open_03.dts \
+
 dtb-$(CONFIG_MACH_EXYNOS7580_S5NEO) += exynos7580-s5neo_rev00.dtb \
 				exynos7580-s5neo_rev06.dtb \
 				exynos7580-s5neo_rev07.dtb \
