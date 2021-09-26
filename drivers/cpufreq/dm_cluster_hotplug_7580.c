@@ -14,10 +14,11 @@ static struct workqueue_struct *khotplug_wq;
 
 enum hstate {
 	H0,
+#ifndef CONFIG_EXYNOS7580_QUAD
 	H1,
 	H2,
-#ifndef CONFIG_EXYNOS7580_QUAD
 	H3,
+	H4,
 #endif
 	MAX_HSTATE,
 };
@@ -59,33 +60,32 @@ struct hotplug_hstate {
 };
 
 static struct hotplug_hstate hstate_set[] = {
-	[H0] = {
-		.name		= "H0",
-		.core_count	= NR_CPUS,
-		.state		= H0,
-	},
-	[H1] = {
-		.name		= "H1",
-		.core_count	= NR_CPUS / 2,
-		.state		= H1,
-	},
+        [H0] = {
+                .name           = "H0",
+                .core_count     = NR_CPUS,
+                .state          = H0,
+        },
 #ifndef CONFIG_EXYNOS7580_QUAD
-	[H2] = {
-		.name		= "H2",
-		.core_count	= 2,
-		.state		= H2,
-	},
-	[H3] = {
-		.name		= "H3",
-		.core_count	= 1,
-		.state		= H3,
-	},
-#else
-	[H2] = {
-		.name		= "H2",
-		.core_count	= 1,
-		.state		= H2,
-	},
+        [H1] = {
+                .name           = "H1",
+                .core_count     = NR_CPUS - 1,
+                .state          = H1,
+        },
+        [H2] = {
+                .name           = "H2",
+                .core_count     = NR_CPUS - 2,
+                .state          = H2,
+        },
+        [H3] = {
+                .name           = "H3",
+                .core_count     = NR_CPUS - 3,
+                .state          = H3,
+        },
+        [H4] = {
+                .name           = "H4",
+                .core_count     = NR_CPUS - 4,
+                .state          = H4,
+        },
 #endif
 };
 
