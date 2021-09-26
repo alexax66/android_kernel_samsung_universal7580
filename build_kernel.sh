@@ -6,7 +6,7 @@ THREAD=-j$(bc <<< $(grep -c ^processor /proc/cpuinfo)+2)
 DTBH_PLATFORM_CODE=0x50a6
 DTBH_SUBTYPE_CODE=0x217584da
 
-make -C $(pwd) O=output ARCH=$ARCH "lineageos_a3xelte_defconfig"
+make -C $(pwd) O=output ARCH=$ARCH "lineageos_a3xelte-octa_defconfig"
 make $THREAD -C $(pwd) O=output ARCH=$ARCH
 cp output/arch/arm64/boot/Image  output/arch/arm64/boot/boot.img-kernel
 
